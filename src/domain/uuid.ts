@@ -1,0 +1,18 @@
+export const beUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/
+
+export function uuid(): string {
+  // https://github.com/GoogleChrome/chrome-platform-analytics/blob/master/src/internal/identifier.js
+  // const FORMAT: string = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+  let chars = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.split('');
+  for (let i = 0, len = chars.length; i < len; i++) {
+    switch (chars[i]) {
+      case 'x':
+        chars[i] = Math.floor(Math.random() * 16).toString(16);
+        break;
+      case 'y':
+        chars[i] = (Math.floor(Math.random() * 4) + 8).toString(16);
+        break;
+    }
+  }
+  return chars.join('');
+}
